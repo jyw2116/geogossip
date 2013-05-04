@@ -20,9 +20,15 @@
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/main.css">
 
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+        <![endif]-->
+
         <!--[if lt IE 9]>
             <script src="js/vendor/html5-3.6-respond-1.1.0.min.js"></script>
         <![endif]-->
+        <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -54,7 +60,7 @@
             <!-- Example row of columns -->
             <div class="row">
                 <div class="span8">
-                    map goes here
+                    <div id="map"></div>
                 </div>
                 <div class="span4">
                     <h2>location title</h2>
@@ -76,6 +82,7 @@
 
         <script src="js/vendor/bootstrap.min.js"></script>
 
+        <script src="js/config.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>
