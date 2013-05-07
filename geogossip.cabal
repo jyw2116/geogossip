@@ -1,0 +1,33 @@
+Name: geogossip
+Version: 0.1
+
+Synopsis: Geogossip project
+Description: Geogossip!
+Author: Jiyeon Woo, Jon Cheng, Daniel Choi
+Maintainer: dhchoi@gmail.com
+Build-Type: Simple
+Category: Web
+License:             MIT
+License-file:        LICENSE
+Cabal-Version: >= 1.4
+Executable geogossip
+  Hs-Source-Dirs: src
+  main-is: Main.hs
+
+  Build-Depends: 
+    base,
+    ghc-prim,
+    text,
+    transformers,
+    websockets,
+    websockets-snap,
+    aeson,
+    bytestring,
+    time >= 1.4,
+    mtl, 
+    snap-core,
+    snap-server,
+    HDBC,
+    HDBC-postgresql
+
+  -- ghc-options: -threaded -Wall -fwarn-tabs -funbox-strict-fields -O2 -fno-warn-orphans -fno-warn-unused-do-bind
