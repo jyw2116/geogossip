@@ -15,7 +15,8 @@ type Bounds = (LatLng, LatLng)  -- SW NE
 
 data Channel = Channel { 
       channelId :: Int 
-    , channelCenter :: LatLng
+    , channelName :: Text
+    -- , channelCenter :: LatLng
     , members :: [User]
     , messages :: [Message]
     } deriving (Generic, Show)
@@ -56,9 +57,16 @@ updateUser u = do
 createMembership :: Channel -> User -> IO ()
 createMembership = undefined
 
-terminateMembership :: Channel -> User -> IO ()
+-- terminates any current membership of the user
+terminateMembership :: User -> IO ()
 terminateMembership = undefined
 
 -- look up membership
 createMessage :: User -> Text -> IO ()
 createMessage = undefined
+
+-- get channel, for sending as JSON resource
+getChannel :: Int -> IO Channel
+getChannel = undefined
+
+
