@@ -61,7 +61,6 @@ createMembership = undefined
 terminateMembership :: User -> IO ()
 terminateMembership = undefined
 
--- look up membership
 createMessage :: User -> Text -> IO ()
 createMessage = undefined
 
