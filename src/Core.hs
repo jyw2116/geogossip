@@ -52,4 +52,13 @@ updateUser u = do
         [toSql $ userNick u, toSql $ userId u]
     commit c
     return $ User (fromSql id) (fromSql nick) Nothing
-  
+
+createMembership :: Channel -> User -> IO ()
+createMembership = undefined
+
+terminateMembership :: Channel -> User -> IO ()
+terminateMembership = undefined
+
+-- look up membership
+createMessage :: User -> Text -> IO ()
+createMessage = undefined
