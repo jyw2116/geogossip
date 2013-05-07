@@ -25,14 +25,13 @@ simpleConfig :: Config m a
 simpleConfig = foldl' (\accum new -> new accum) emptyConfig base 
   where
     base = [hostName, accessLog, errorLog, locale, port, ip, verbose]
-    hostName = setHostname (bsFromString "localhost")
+    hostName = setHostname "localhost"
     accessLog = setAccessLog (ConfigFileLog "log/access.log")
     errorLog = setErrorLog (ConfigFileLog "log/error.log")
     locale = setLocale "US"
     port = setPort 9160
     ip = setBind "127.0.0.1"
     verbose = setVerbose True
-    bsFromString = TE.encodeUtf8 . T.pack
 
 main :: IO ()
 main = do
