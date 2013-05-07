@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings, ScopedTypeVariables  #-}
-
+{-# LANGUAGE OverloadedStrings #-}
 module Main where
 
 import Control.Monad.IO.Class (liftIO)
@@ -30,7 +30,7 @@ simpleConfig = foldl' (\accum new -> new accum) emptyConfig base
     errorLog = setErrorLog (ConfigFileLog "log/error.log")
     locale = setLocale "US"
     port = setPort 9160
-    ip = setBind (bsFromString "127.0.0.1")
+    ip = setBind "127.0.0.1"
     verbose = setVerbose True
     bsFromString = TE.encodeUtf8 . T.pack
 
