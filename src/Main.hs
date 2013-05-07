@@ -22,7 +22,8 @@ import Network.WebSockets.Snap
 import Core
 
 simpleConfig :: Config m a
-simpleConfig = foldl' (\accum new -> new accum) emptyConfig base where
+simpleConfig = foldl' (\accum new -> new accum) emptyConfig base 
+  where
     base = [hostName, accessLog, errorLog, locale, port, ip, verbose]
     hostName = setHostname (bsFromString "localhost")
     accessLog = setAccessLog (ConfigFileLog "log/access.log")
@@ -35,12 +36,16 @@ simpleConfig = foldl' (\accum new -> new accum) emptyConfig base where
 
 main :: IO ()
 main = do
-    httpServe simpleConfig $ site -- run with snap
-    -- WS.runServer "0.0.0.0" 9160 $ application state  -- run without snap
+    httpServe simpleConfig $ site 
 
 site :: Snap ()
 site = ifTop (serveFile "public/index.html") <|> 
     -- route [ ("ws", liftIO (newMVar M.empty) >>= runWebSocketsSnap . wsApplication) ] <|>
     route [ ("", (serveDirectory "public")) ] 
 
+{-
+  todo
+    - write JSON instances
+    - draw json resource routes in snap
 
+-}
