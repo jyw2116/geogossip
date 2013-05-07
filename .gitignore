@@ -1,3 +1,4 @@
 config.jsdist
 dist
 log
+config.js
