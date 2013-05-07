@@ -13,12 +13,6 @@ type Lng = Double
 type LatLng = (Lat, Lng)
 type Bounds = (LatLng, LatLng)  -- SW NE
 
-data Map = Map { 
-      mapId :: Int
-    , mapCenter :: LatLng,
-    , mapBounds :: Bounds
-    } deriving (Generic, Show)
-
 data Channel = Channel { 
       channelId :: Int 
     , channelCenter :: LatLng
