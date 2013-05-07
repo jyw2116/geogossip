@@ -44,10 +44,12 @@ createUser nick = do
     commit c
     return $ User (fromSql id) (fromSql nick) Nothing
 
-updateUser :: String -> IO User
-updateUser nick = do
+updateUser :: User -> IO User
+updateUser u = do
     c <- conn
-    [[id, nick]] <- quickQuery' c "update users set user_nick = ? returning user_id, user_nick" [toSql nick]
+    [[id, nick]] <- quickQuery' c 
+        "update users set user_nick = ? where user_id = ? returning user_id, user_nick" 
+        [toSql $ userNick u, toSql $ userId u]
     commit c
     return $ User (fromSql id) (fromSql nick) Nothing
   
