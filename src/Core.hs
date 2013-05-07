@@ -17,6 +17,7 @@ data Channel = Channel {
       channelId :: Int 
     , channelCenter :: LatLng
     , members :: [User]
+    , messages :: [Message]
     } deriving (Generic, Show)
 
 data User = User { 
@@ -25,7 +26,11 @@ data User = User {
     , userChannelId :: Maybe Int
     } deriving (Generic, Show)
     
-    
+data Message = Message {
+      messageId :: Int
+    , messageText :: Text
+    , messageUserNick :: Text
+    }
 
 conn :: IO Connection
 conn = connectPostgreSQL "host=localhost dbname=geogossip2"
