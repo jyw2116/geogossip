@@ -49,6 +49,9 @@ instance ToRow User where
 allUsers :: Connection -> IO [User]
 allUsers c = query_ c "SELECT user_id, user_nick, 1 from users"
 
+createUser :: Connection -> String -> IO [User]
+createUser c nick = query c "INSERT into users (user_nick) values (?) returning user_id, user_nick, 1" [toField nick]
+
 
 {-
 createUser :: String -> IO User
