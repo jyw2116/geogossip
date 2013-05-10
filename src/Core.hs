@@ -2,11 +2,13 @@
 
 module Core where
 import GHC.Generics (Generic)
+import Control.Applicative
 import Data.Text (Text)
 import qualified Data.Text as T
-
-import Database.HDBC
-import Database.HDBC.PostgreSQL
+import Database.PostgreSQL.Simple
+import Database.PostgreSQL.Simple.FromRow (field, fromRow)
+import Database.PostgreSQL.Simple.ToRow (toRow)
+import Database.PostgreSQL.Simple.ToField (toField)
 
 type Lat = Double
 type Lng = Double
@@ -22,22 +24,33 @@ data Channel = Channel {
     } deriving (Generic, Show)
 
 data User = User { 
-      userId  :: Int 
+      userId  :: Maybe Int 
     , userNick :: Text
     , userChannelId :: Maybe Int
     } deriving (Generic, Show)
     
 data Message = Message {
-      messageId :: Int
+      messageId :: Maybe Int
     , messageText :: Text
     , messageUserNick :: Text
     } deriving (Generic, Show)
 
-conn :: IO Connection
-conn = connectPostgreSQL "host=localhost dbname=geogossip2"
+defconn :: IO Connection
+defconn = connectPostgreSQL "host=localhost dbname=geogossip2"
 
 -- TODO enforce uniqueness requirement
 
+instance FromRow User where
+  fromRow = User <$> field  <*> field <*> field
+
+instance ToRow User where
+  toRow (User a b c) = [toField a, toField b, toField c] 
+  
+allUsers :: Connection -> IO [User]
+allUsers c = query_ c "SELECT user_id, user_nick, 1 from users"
+
+
+{-
 createUser :: String -> IO User
 createUser nick = do
     c <- conn
@@ -67,5 +80,5 @@ createMessage = undefined
 -- get channel, for sending as JSON resource
 getChannel :: Int -> IO Channel
 getChannel = undefined
-
+-}
 
