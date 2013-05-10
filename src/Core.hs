@@ -1,7 +1,6 @@
-{-# LANGUAGE OverloadedStrings, DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Core where
-import GHC.Generics (Generic)
 import Control.Applicative
 import Data.Text (Text)
 import qualified Data.Text as T
@@ -23,19 +22,19 @@ data Channel = Channel {
     -- , channelCenter :: LatLng
     , members :: [User]
     , messages :: [Message]
-    } deriving (Generic, Show)
+    } deriving (Show)
 
 data User = User { 
       userId  :: Maybe Int 
     , userNick :: Text
     , userChannelId :: Maybe Int
-    } deriving (Generic, Show)
+    } deriving (Show)
     
 data Message = Message {
       messageId :: Maybe Int
     , messageText :: Text
     , messageUserNick :: Text
-    } deriving (Generic, Show)
+    } deriving (Show)
 
 
 -- JSON
