@@ -54,11 +54,13 @@ instance FromRow User where
 instance ToRow User where
   toRow (User a b c) = [toField a, toField b, toField c] 
   
+
+{- TODO replace hard coded nulls with real calculations -}
 allUsers :: Connection -> IO [User]
-allUsers c = query_ c "SELECT user_id, user_nick, 1 from users"
+allUsers c = query_ c "SELECT user_id, user_nick, null from users"
 
 createUser :: Connection -> String -> IO [User]
-createUser c nick = query c "INSERT into users (user_nick) values (?) returning user_id, user_nick, 1" [toField nick]
+createUser c nick = query c "INSERT into users (user_nick) values (?) returning user_id, user_nick, null" [toField nick]
 
 -- test
 allUsersJSON :: IO ()
@@ -67,12 +69,6 @@ allUsersJSON = do
   allUsers c >>= mapM_ (B.putStrLn . encode)
 
 {-
-createUser :: String -> IO User
-createUser nick = do
-    c <- conn
-    [[id, nick]] <- quickQuery' c "insert into users (user_nick) values (?) returning user_id, user_nick" [toSql nick]
-    commit c
-    return $ User (fromSql id) (fromSql nick) Nothing
 
 updateUser :: User -> IO User
 updateUser u = do
