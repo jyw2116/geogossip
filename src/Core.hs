@@ -9,6 +9,8 @@ import Database.PostgreSQL.Simple
 import Database.PostgreSQL.Simple.FromRow (field, fromRow)
 import Database.PostgreSQL.Simple.ToRow (toRow)
 import Database.PostgreSQL.Simple.ToField (toField)
+import Data.Aeson
+import qualified Data.ByteString.Lazy.Char8 as B
 
 type Lat = Double
 type Lng = Double
@@ -35,6 +37,12 @@ data Message = Message {
     , messageUserNick :: Text
     } deriving (Generic, Show)
 
+
+-- JSON
+
+instance ToJSON User where
+  toJSON v = object ["id" .= userId v, "nick" .= userNick v, "channel_id" .= userChannelId v]
+
 defconn :: IO Connection
 defconn = connectPostgreSQL "host=localhost dbname=geogossip2"
 
@@ -52,6 +60,11 @@ allUsers c = query_ c "SELECT user_id, user_nick, 1 from users"
 createUser :: Connection -> String -> IO [User]
 createUser c nick = query c "INSERT into users (user_nick) values (?) returning user_id, user_nick, 1" [toField nick]
 
+-- test
+allUsersJSON :: IO ()
+allUsersJSON = do
+  c <- defconn
+  allUsers c >>= mapM_ (B.putStrLn . encode)
 
 {-
 createUser :: String -> IO User
