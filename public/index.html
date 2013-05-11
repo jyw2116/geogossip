@@ -29,8 +29,11 @@
             <script src="js/vendor/html5-3.6-respond-1.1.0.min.js"></script>
         <![endif]-->
         <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+
+        <script text='text/javascript' src="js/angular.min.js"></script>
+
     </head>
-    <body>
+    <body ng-app ng-controller="ChatCtrl">
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
@@ -56,6 +59,37 @@
         </div>
 
         <div class="container">
+
+            <!-- angular d3.js examples -->
+            <div class="row">
+                <div class="span6">
+                    <div id="d3-1"></div>
+                    <pre>
+{{circleProps | json}}
+                    </pre>
+
+                </div>
+                <div class="span6">
+                    <h2>d3.js + Angular</h2>
+
+                    <p>These inputs are bound by Angular to properties of the d3.js circles</p>
+
+                    <label>radius</label>
+                    <input type="text" ng-model="circleProps.radius"/> 
+
+                    <label>fill</label>
+                    <input type="text" ng-model="circleProps.fill"/> 
+
+                    <label>stroke</label>
+                    <input type="text" ng-model="circleProps.stroke"/> 
+
+                    <br/>
+                    <button ng-click="pulse()">pulse</button>
+
+
+                </div>
+            </div>
+
 
             <!-- Example row of columns -->
             <div class="row">
@@ -83,6 +117,10 @@
         <script src="js/vendor/bootstrap.min.js"></script>
 
         <script src="js/config.js"></script>
+
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
         <script src="js/main.js"></script>
+        <script src="js/chat.js"></script>
     </body>
 </html>
