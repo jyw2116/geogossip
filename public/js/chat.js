@@ -15,6 +15,7 @@ var svg = d3.select("#d3-1")
 svg.selectAll("circle")
     .data(data)
   .enter().append("circle")
+    .attr('class', 'geoChatCircle')
     .attr("cx", x)
     .attr("cy", y)
     .attr("r", 12)
@@ -61,20 +62,19 @@ function ChatCtrl($scope, $http) {
 
   
     $scope.pulse = function() {
-        svg.selectAll("cicle").remove()
-            .data(data)
-          .enter().append("circle")
+        svg.selectAll("circle")
             .attr("cx", x)
             .attr("cy", y)
             .attr("r", $scope.circleProps.radius * 3)
-            .style("fill", "none")
+            .style("fill", "white")
             .style("stroke", $scope.circleProps.stroke)
             .style("stroke-opacity", 1e-6)
             .style("stroke-width", 3)
           .transition()
             .duration(750)
             .attr("r", $scope.circleProps.radius)
-            .style("stroke-opacity", 1);
+            .style("stroke-opacity", 1)
+            .style("fill", $scope.circleProps.fill);
     }
 
     $scope.plotUsers = function() {
