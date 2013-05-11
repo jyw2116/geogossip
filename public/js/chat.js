@@ -92,7 +92,7 @@ function ChatCtrl($scope, $http) {
     }
 
     $scope.addUser = function() {
-        $scope.users.push({});
+        $scope.users.push({x:200, y:200});
     };
 }
 
