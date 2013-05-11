@@ -12,7 +12,7 @@
 
 /* override bootstrap */
 
-td input[type=text] {
+td input[type=text], input[type=range] {
   width: auto;
 }
 

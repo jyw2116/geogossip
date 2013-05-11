@@ -65,12 +65,12 @@
 
             <!-- angular d3.js examples -->
             <div class="row">
-                <div class="span6">
+                <div class="span8">
                     <div id="d3-1"></div>
 
 
 
-                    <p>These bind content and placement of the user names</p>
+                    <p>These bind content and placement of the user names. Sliders won't appear in Firefox, but work in Chrome and Safari.</p>
 
                     <table class="table table-bordered">
                         <thead>
@@ -80,9 +80,17 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="user in users">
-                                <td><input type='text' ng-model='user.name' /></td>
-                                <td><input type='text' ng-model='user.x' /></td>
-                                <td><input type='text' ng-model='user.y' /></td>
+                                <td>
+                                    <input type='text' ng-model='user.name' />
+                                </td>
+                                <td>
+                                    <input type='text' ng-model='user.x' />
+                                    <input type='range' ng-model='user.x' max="400" />
+                                </td>
+                                <td>
+                                    <input type='text' ng-model='user.y' />
+                                    <input type='range' ng-model='user.y' max="300" />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -92,7 +100,7 @@
 
 
                 </div>
-                <div class="span6">
+                <div class="span4">
                     <h2>d3.js + Angular</h2>
 
                     <p>These inputs are bound by Angular to properties of the d3.js circles</p>
