@@ -21,7 +21,7 @@ svg.selectAll("circle")
     .attr("r", 12)
     .style("fill", "#ccc")
     .style("stroke", "red")
-    .style("stroke-opacity", 1e-6)
+    .style("stroke-opacity", 1)
     .style("stroke-width", 3);
 
 
