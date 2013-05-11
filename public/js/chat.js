@@ -61,7 +61,7 @@ function ChatCtrl($scope, $http) {
 
   
     $scope.pulse = function() {
-        svg.selectAll("cicle")
+        svg.selectAll("cicle").remove()
             .data(data)
           .enter().append("circle")
             .attr("cx", x)
