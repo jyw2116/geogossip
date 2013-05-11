@@ -10,7 +10,11 @@
 
 
 
+/* override bootstrap */
 
+td input[type=text] {
+  width: auto;
+}
 
 
 

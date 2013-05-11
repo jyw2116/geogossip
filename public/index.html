@@ -66,9 +66,29 @@
             <div class="row">
                 <div class="span6">
                     <div id="d3-1"></div>
-                    <pre>
-{{circleProps | json}}
-                    </pre>
+
+
+
+                    <p>These bind content and placement of the user names</p>
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <th>name</th>
+                            <th>x</th>
+                            <th>y</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="user in users">
+                                <td><input type='text' ng-model='user.name' /></td>
+                                <td><input type='text' ng-model='user.x' /></td>
+                                <td><input type='text' ng-model='user.y' /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        <button ng-click="addUser()">Add User</button>
+                    </p>
+
 
                 </div>
                 <div class="span6">
@@ -85,8 +105,27 @@
                     <label>stroke</label>
                     <input type="text" ng-model="circleProps.stroke"/> 
 
-                    <br/>
-                    <button ng-click="pulse()">pulse</button>
+                    <p>
+                        <button ng-click="pulse()">pulse</button>
+                    </p>
+
+                    <pre>
+{{circleProps | json}}
+                    </pre>
+
+
+
+                    <p>
+                      Some code is adapted  from <a
+                      href="http://mbostock.github.io/d3/tutorial/circle.html">d3
+                      circles tutorial</a>.
+                    </p>
+
+                    <p> Another good guide is <a
+                    href="http://briantford.com/blog/angular-d3.html">Brian
+                    Ford's GitHub visualization exercise</a>, but it does fancy
+                    stuff with Angular directives that we don't need to do yet.
+                    </p>
 
 
                 </div>
