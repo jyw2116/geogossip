@@ -11,7 +11,8 @@ function ChatUICtrl ($scope, $http) {
           name: "Jon",
           message: "I like icecream and waffles!"
         }
-      ]
+      ],
+      latLng: null
     },
     {
       topic: "Nemes @ Middle east!",
@@ -24,7 +25,8 @@ function ChatUICtrl ($scope, $http) {
           name: "Judy",
           message: "I like strawberries!"
         }
-      ]
+      ],
+      latLng: [42.3, -71.0]
     }
   ];
 

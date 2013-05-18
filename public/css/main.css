@@ -30,6 +30,6 @@ td input[type=text], input[type=range] {
   min-height: 200px;
 }
 
-.topic_input{
-  
+.map_topic{
+  color: gray;
 }

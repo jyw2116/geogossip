@@ -74,7 +74,10 @@
                   <button class="add_topic">Add a new topic</button>
 
                   <!-- topics go here -->
-                  <div ng-click="selectChannel($index)" ng-repeat="channel in channels" class="topic" ng-class="channelClass($index)">{{channel.topic}}</div>
+                  <div ng-click="selectChannel($index)" ng-repeat="channel in channels" class="topic" ng-class="channelClass($index)">
+                    {{channel.topic}}
+                    <span class="map_topic" ng-show="channel.latLng">(m)</span>
+                  </div>
                 </div>
                 <form name="newTopicForm" ng-submit="createTopic()">
                   <input type="text" ng-model="newTopicName" class="topic_input" placeholder="Add a new topic here"/>
@@ -83,6 +86,7 @@
               </div>
               <div class="span4">
                   <h2 ng-hide="topicEditMode">{{ activeChannel.topic || "Chat"}}</h2>
+                  <h3 class="map_topic" ng-show="activeChannel.latLng">(map)</h3>
                   <form ng-submit="topicEditMode = false" ng-show="topicEditMode">
                     <input type="text" ng-model="activeChannel.topic">
                     <input type="submit">
