@@ -30,7 +30,7 @@ svg.selectAll("circle")
 function ChatCtrl($scope, $http) {
     
     $scope.circleProps = { 
-      radius:  12, 
+      radius:  22, 
       fill: "steelblue",
       stroke: "red"
     };
