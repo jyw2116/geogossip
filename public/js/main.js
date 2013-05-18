@@ -20,6 +20,11 @@ var data = [42.373939, -71.119106];
 var svg = d3.select(map.getPanes().overlayPane).append("svg"),
     g = svg.append("g").attr("class", "leaflet-zoom"); 
 
+function project(x) {
+  var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
+  return [point.x, point.y];
+}
+
 svg.selectAll("circles") 
     .data(data)
 .enter().append("circle")
@@ -32,8 +37,5 @@ svg.selectAll("circles")
     .style("stroke-opacity", 1)
     .style("stroke-width", 3);
 
-function project(x) {
-  var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
-  return [point.x, point.y];
-}
+
 
