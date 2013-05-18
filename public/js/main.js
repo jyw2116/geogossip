@@ -1,4 +1,4 @@
-var map = L.map('map').setView([52.2100, 0.1300], 13);
+var map = L.map('map').setView([42.375, -71.106], 13);
 
 L.tileLayer('http://{s}.tile.cloudmade.com/' + API_KEY + '/997/256/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
@@ -13,7 +13,7 @@ var circle = L.circle([52.2100, 0.1300], 500, {
     fillOpacity: 0.5
 }).addTo(map);
 
-var data = [42.3964, 71.1223];
+var data = [42.373939, -71.119106];
 
 var svg = d3.select(map.getPanes().overlayPane).append("svg"),
     g = svg.append("g").attr("class", "leaflet-zoom"); 
@@ -34,3 +34,4 @@ function project(x) {
   var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
   return [point.x, point.y];
 }
+
