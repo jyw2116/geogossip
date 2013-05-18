@@ -1,4 +1,10 @@
-var map = L.map('map', {dragging: false, zoomControl: false, zoomAnimation: false}).setView([42.375, -71.106], 13);
+var map = L.map('map', { dragging: false,
+                         zoomControl: false, 
+                         zoomAnimation: false,
+                         scrollWheelZoom: false,
+                         doubleClickZoom: false,
+                         touchZoom: false
+                       }).setView([42.375, -71.106], 13);
 
 
 L.tileLayer('http://{s}.tile.cloudmade.com/' + API_KEY + '/997/256/{z}/{x}/{y}.png', {
@@ -93,7 +99,8 @@ function ChatUICtrl ($scope, $http) {
     var xs = $.grep($scope.channels, channelsWithLocations);
     console.log("running drawMap");
     console.log(xs);
-    svg.selectAll("circles") 
+    svg.selectAll('circle').remove();
+    svg.selectAll("circle") 
     .data(xs)
     .enter().append("circle")
     .attr('class', 'geoChatCircle')
@@ -103,8 +110,9 @@ function ChatUICtrl ($scope, $http) {
       return (project(d.latLng)[0]);
     })
     .attr("cy", function(d) {return (project(d.latLng)[1])})
-    .attr("r", 6)
-    .style("fill", "#ccc")
+    .attr("r", 12)
+    .style("fill", "#f03")
+    .style('fill-opacity', 0.3)
     .style("stroke", "red")
     .style("stroke-opacity", 1)
     .style("stroke-width", 3);
@@ -112,6 +120,20 @@ function ChatUICtrl ($scope, $http) {
 
   $scope.populateMap();
 
+  map.on('click', function (e) {
+    var latLng = [e.latlng.lat, e.latlng.lng];
+    console.log(latLng);
+    var newChannel = {
+      topic: "some topic",
+      messages: [],
+      latLng: latLng
+    };
+    $scope.channels.push(newChannel);
+    console.log($scope.channels);
 
+    $scope.$apply();
+    $scope.populateMap();
+
+  });
 
 }
