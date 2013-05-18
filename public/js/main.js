@@ -5,8 +5,32 @@ L.tileLayer('http://{s}.tile.cloudmade.com/' + API_KEY + '/997/256/{z}/{x}/{y}.p
     maxZoom: 18
 }).addTo(map);
 
+map.doubleClickZoom.disable();
+
 var circle = L.circle([52.2100, 0.1300], 500, {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5
 }).addTo(map);
+
+var data = [42.3964, 71.1223];
+
+var svg = d3.select(map.getPanes().overlayPane).append("svg"),
+    g = svg.append("g").attr("class", "leaflet-zoom"); 
+
+svg.selectAll("circles") 
+    .data(data)
+.enter().append("circle")
+    .attr('class', 'geoChatCircle')
+    .attr("cx", 12)
+    .attr("cy", 12)
+    .attr("r", 6)
+    .style("fill", "#ccc")
+    .style("stroke", "red")
+    .style("stroke-opacity", 1)
+    .style("stroke-width", 3);
+
+function project(x) {
+  var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
+  return [point.x, point.y];
+}
