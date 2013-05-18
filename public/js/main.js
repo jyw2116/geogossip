@@ -15,27 +15,24 @@ var circle = L.circle([52.2100, 0.1300], 500, {
     fillOpacity: 0.5
 }).addTo(map);
 
-var data = [42.373939, -71.119106];
+var locations = [[42.373939, -71.119106]];
 
 var svg = d3.select(map.getPanes().overlayPane).append("svg"),
     g = svg.append("g").attr("class", "leaflet-zoom"); 
 
 function project(x) {
-  var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
+  var point = map.latLngToLayerPoint(new L.LatLng(x[0], x[1]));
   return [point.x, point.y];
 }
 
 svg.selectAll("circles") 
-    .data(data)
+    .data(locations)
 .enter().append("circle")
     .attr('class', 'geoChatCircle')
-    .attr("cx", 12)
-    .attr("cy", 12)
+    .attr("cx", function(d) {return (project(d)[0])})
+    .attr("cy", function(d) {return (project(d)[1])})
     .attr("r", 6)
     .style("fill", "#ccc")
     .style("stroke", "red")
     .style("stroke-opacity", 1)
     .style("stroke-width", 3);
-
-
-
