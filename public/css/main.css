@@ -4,7 +4,7 @@
    Author's custom styles
    ========================================================================== */
 
-#map, svg {
+#map, svg.myMapOverlay {
   height: 360px;
   width: 770px;
 }
