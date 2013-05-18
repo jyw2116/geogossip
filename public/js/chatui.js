@@ -1,3 +1,23 @@
+var map = L.map('map', {dragging: false, zoomControl: false}).setView([42.375, -71.106], 13);
+
+
+L.tileLayer('http://{s}.tile.cloudmade.com/' + API_KEY + '/997/256/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+    maxZoom: 18
+}).addTo(map);
+
+
+map.doubleClickZoom.disable();
+
+var svg = d3.select(map.getPanes().overlayPane).append("svg"),
+    g = svg.append("g").attr("class", "leaflet-zoom"); 
+
+function project(x) {
+  var point = map.latLngToLayerPoint(new L.LatLng(x[0], x[1]));
+  return [point.x, point.y];
+}
+
+
 function ChatUICtrl ($scope, $http) {
   $scope.channels = [
     {
@@ -26,7 +46,7 @@ function ChatUICtrl ($scope, $http) {
           message: "I like strawberries!"
         }
       ],
-      latLng: [42.3, -71.0]
+      latLng: [42.373939, -71.119106]
     }
   ];
 
@@ -65,4 +85,8 @@ function ChatUICtrl ($scope, $http) {
     })
     $scope.newTopicName = "";
   }
+
+
+
+
 }
