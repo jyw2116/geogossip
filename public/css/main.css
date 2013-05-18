@@ -6,15 +6,30 @@
 
 #map { height: 360px; }
 
-
-
-
-
 /* override bootstrap */
 
 td input[type=text], input[type=range] {
   width: auto;
 }
 
+.topic, .add_topic{
+  float: left;
+  border: 1px solid grey;
+  overflow: hidden;
+  margin: 5px;
+  width: 200px;
+  height: 30px;
+}
 
+.channel_active{
+  background: yellow;
+}
 
+.chat_container{
+  border: 1px solid grey;
+  min-height: 200px;
+}
+
+.topic_input{
+  
+}
