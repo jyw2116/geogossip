@@ -1,5 +1,5 @@
 var map = L.map('map', { dragging: false,
-                         zoomControl: false, 
+                         zoomControl: false,
                          zoomAnimation: false,
                          scrollWheelZoom: false,
                          doubleClickZoom: false,
@@ -16,7 +16,7 @@ L.tileLayer('http://{s}.tile.cloudmade.com/' + API_KEY + '/997/256/{z}/{x}/{y}.p
 map.doubleClickZoom.disable();
 
 var svg = d3.select(map.getPanes().overlayPane).append("svg").attr('class', 'myMapOverlay'),
-    g = svg.append("g").attr("class", "leaflet-zoom"); 
+    g = svg.append("g").attr("class", "leaflet-zoom");
 
 function project(x) {
   var point = map.latLngToLayerPoint(new L.LatLng(x[0], x[1]));
@@ -84,23 +84,23 @@ function ChatUICtrl ($scope, $http) {
     else{
       return "";
     }
-  }
+  };
 
   $scope.createTopic = function () {
     console.log("running createTopic");
     $scope.channels.push({
       topic: $scope.newTopicName,
       messages:[]
-    })
+    });
     $scope.newTopicName = "";
-  }
+  };
 
   $scope.populateMap = function (){
     var xs = $.grep($scope.channels, channelsWithLocations);
     console.log("running drawMap");
     console.log(xs);
     svg.selectAll('circle').remove();
-    svg.selectAll("circle") 
+    svg.selectAll("circle")
     .data(xs)
     .enter().append("circle")
     .attr('class', 'geoChatCircle')
@@ -116,7 +116,7 @@ function ChatUICtrl ($scope, $http) {
     .style("stroke", "red")
     .style("stroke-opacity", 1)
     .style("stroke-width", 3);
-  }
+  };
 
   $scope.populateMap();
 
