@@ -2,13 +2,16 @@
 create table channels (
   channel_id serial primary key,
   created timestamp with time zone default now(),
+  channel_title varchar not null,
   lat float,
-  lng float
+  lng float,
+  updated timestamp default now()
 );
 
 create table users (
   user_id serial primary key,
   user_nick varchar unique,
+  user_agent varchar,
   created timestamp with time zone default now()
 );
 
