@@ -30,14 +30,7 @@ ActiveRecord::Base.establish_connection(
 
 ActiveRecord::Base.include_root_in_json = false
 
-get '/' do
-  form = <<-END
-    <form action="/messages" method="POST">
-      <input type="text" name="name"/>
-      <input type="submit"/>
-    </form>
-  END
-end
+set :public_dir, "public"
 
 get '/channels' do
   Channel.all.map {|channel|
@@ -46,3 +39,8 @@ get '/channels' do
     )
   }.to_json
 end
+
+get '/users' do
+  [{user_nick: "JON"}, {user_nick: "DAN"}].to_json
+end
+

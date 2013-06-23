@@ -63,6 +63,16 @@
         </div>
 
         <div class="container">
+          <div class="row" ng-controller="ChatUICtrl">
+            <div class="span12">
+              <h1>Users in DB</h1>
+
+              <div ng-repeat="user in users">
+                <h3>{{user.user_nick}}</h3>
+              </div>
+            </div>
+
+          </div>
 
           <!-- angular d3.js examples -->
           <div class="row" ng-controller="ChatUICtrl">

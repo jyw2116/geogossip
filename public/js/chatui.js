@@ -28,6 +28,16 @@ function channelsWithLocations(x){
 }
 
 function ChatUICtrl ($scope, $http) {
+
+  $scope.users = [
+    { user_nick: "Judy" },
+    { user_nick: "Jon" }
+  ];
+
+  $http.get("/users").success(function(data) {
+    $scope.users = data;
+  });
+
   $scope.channels = [
     {
       topic: "Best icecream @ JP Licks",
