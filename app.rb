@@ -25,7 +25,8 @@ end
 ActiveRecord::Base.establish_connection(
   host: "localhost",
   adapter: "postgresql",
-  database: "geogossip"
+  database: "geogossip",
+  pool: 15
 )
 
 ActiveRecord::Base.include_root_in_json = false
@@ -41,6 +42,12 @@ get '/channels' do
 end
 
 get '/users' do
-  [{user_nick: "JON"}, {user_nick: "DAN"}].to_json
+  User.all.to_json
+end
+
+post '/users' do
+  payload = JSON.parse(request.body.read) 
+  user = User.create( user_nick: payload["user_nick"] )
+  puts "New user: #{user.inspect}"
 end
 

@@ -70,6 +70,14 @@
               <div ng-repeat="user in users">
                 <h3>{{user.user_nick}}</h3>
               </div>
+
+              <hr/>
+
+              <form ng-submit="createUser()">
+                YOUR NICKNAME:
+                <input type="text" ng-model="thisUser.user_nick"/>
+                <input type="submit"/>
+              </form>
             </div>
 
           </div>

@@ -29,14 +29,23 @@ function channelsWithLocations(x){
 
 function ChatUICtrl ($scope, $http) {
 
-  $scope.users = [
-    { user_nick: "Judy" },
-    { user_nick: "Jon" }
-  ];
+  $scope.thisUser = {};
 
-  $http.get("/users").success(function(data) {
-    $scope.users = data;
-  });
+  $scope.refreshUsers = function() {
+    $http.get("/users").success(function(data) {
+      $scope.users = data;
+    });
+  }
+
+  $scope.refreshUsers();
+
+  $scope.createUser = function() {
+    $http.post("/users", $scope.thisUser).success(function(data) {
+      console.log("SUCCESS!")
+    });
+    $scope.refreshUsers();
+
+  }
 
   $scope.channels = [
     {
