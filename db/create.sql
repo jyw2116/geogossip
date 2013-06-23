@@ -16,7 +16,7 @@ create table users (
 );
 
 -- channel membership is transient; this acts as a log as well
-create table membership (
+create table memberships (
   membership_id serial primary key,
   user_id integer references users (user_id) on delete cascade,
   channel_id integer references channels(channel_id) on delete cascade, 
